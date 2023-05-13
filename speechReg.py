@@ -53,7 +53,7 @@ def preprocess():
     # r.recognize_google.language = language
 
     # Record the speech
-    with sr.Microphone() as source:
+    with sr.Microphone(device_index=None) as source:
             status_text = st.empty()
             status_text.info("Recording in progress...")
             audio = r.listen(source)
