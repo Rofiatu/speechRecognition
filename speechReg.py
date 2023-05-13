@@ -44,7 +44,7 @@ def preprocess():
     r = sr.Recognizer()
 
     # Configure the recognizer to use the selected language
-    r.energy_threshold = 4000  # Adjust this value according to your microphone
+    r.energy_threshold = 4000
     r.dynamic_energy_threshold = True
     r.pause_threshold = 1.0
     r.phrase_threshold = 0.3
@@ -52,8 +52,12 @@ def preprocess():
     r.operation_timeout = None
     # r.recognize_google.language = language
 
+    # Get the default input device using sounddevice
+    device_info = sd.query_devices(kind='input')
+    default_device_index = device_info['default_samplerate']
+
     # Record the speech
-    with sr.Microphone(device_index=None) as source:
+    with sr.Microphone(device_index=default_device_index) as source:
             r.adjust_for_ambient_noise(source)
             status_text = st.empty()
             status_text.info("Recording in progress...")
