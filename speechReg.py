@@ -57,7 +57,7 @@ def preprocess():
     # default_device_index = device_info['default_samplerate']
 
     # Record the speech
-    with sr.Microphone(device_index=0) as source:
+    with sr.Microphone(device_index=1) as source:
             r.adjust_for_ambient_noise(source)
             status_text = st.empty()
             status_text.info("Recording in progress...")
